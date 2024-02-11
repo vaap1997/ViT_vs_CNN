@@ -59,7 +59,7 @@ def predict_ViT(file):
   if (pixels > 1).any().any():
     pixels = pixels/255
   
-  pos_feed = np.array([list(range(n*m))]*1)
+  pos_feed = np.array([list(range(4*4))]*1)
   pixels = np.asarray(pixels)
   pixels_ravel = np.zeros((16,49))
   ind = 0
