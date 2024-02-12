@@ -90,5 +90,5 @@ def predict_ViT(file):
   return anvil.mpl_util.plot_image(),pred2[0]
 
 
-anvil.server.connect("server_6YD55HP45RX7V6UHWRRAST3G-WOK7HWGMAN5O7RYP")
+
 anvil.server.wait_forever()
