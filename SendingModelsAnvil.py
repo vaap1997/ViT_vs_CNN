@@ -51,7 +51,7 @@ def predict_CNN(file):
   values = pred_probs2[0][top5]
   pred2 = np.argmax(pred_probs2, axis=1)
 
-  fig, ax1 = plt.subplots(figsize=(9, 7), layout='constrained')
+  fig, ax1 = plt.subplots(figsize=(20, 20), layout='constrained')
   barchar = ax1.barh(top5.astype(str), values, align='center', height=0.5,color='#B0C6CE')
   ax1.invert_yaxis()
   barchar[0].set_color('#15616D')
@@ -81,7 +81,7 @@ def predict_ViT(file):
   values = pred_probs2[0][top5]
   pred2 = np.argmax(pred_probs2, axis=1)
 
-  fig, ax1 = plt.subplots(figsize=(9, 7), layout='constrained')
+  fig, ax1 = plt.subplots(figsize=(20, 20), layout='constrained')
   barchar = ax1.barh(top5.astype(str), values, align='center', height=0.5,color='#B0C6CE')
   ax1.invert_yaxis()
   barchar[0].set_color('#15616D')
