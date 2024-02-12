@@ -55,7 +55,6 @@ def predict_CNN(file):
   barchar = ax1.barh(top5.astype(str), values, align='center',color='#B0C6CE')
   ax1.invert_yaxis()
   barchar[0].set_color('#15616D')
-  plt.show()
   return anvil.mpl_util.plot_image(), pred2[0]
     
 @anvil.server.callable
@@ -85,7 +84,6 @@ def predict_ViT(file):
   barchar = ax1.barh(top5.astype(str), values, align='center',color='#B0C6CE')
   ax1.invert_yaxis()
   barchar[0].set_color('#15616D')
-  plt.show()
     
   return anvil.mpl_util.plot_image(),pred2[0]
 
