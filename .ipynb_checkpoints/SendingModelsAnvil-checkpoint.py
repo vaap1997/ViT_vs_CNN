@@ -10,7 +10,6 @@ anvil.server.connect("server_6YD55HP45RX7V6UHWRRAST3G-WOK7HWGMAN5O7RYP")
 CNNmodel = tf.keras.models.load_model('Models/CNNmodel_mnist')
 ViTmodel = tf.keras.models.load_model('Models/ViT_mnist')
 
-
 @anvil.server.callable
 def check_input(file):
   with anvil.media.TempFile(file) as filename:
@@ -36,7 +35,6 @@ def print_image(file):
 
   return anvil.mpl_util.plot_image()
 
-
 @anvil.server.callable
 def predict_CNN(file):
   with anvil.media.TempFile(file) as filename:
@@ -50,9 +48,16 @@ def predict_CNN(file):
   pred_probs2 = CNNmodel.predict(pixels)
   ind = np.argpartition(pred_probs2[0], -5)[-5:]
   top5 = np.flip(ind[np.argsort(pred_probs2[0][ind])])
+  values = pred_probs2[0][top5]
   pred2 = np.argmax(pred_probs2, axis=1)
-  return top5, pred2[0]
 
+  fig, ax1 = plt.subplots(figsize=(9, 7), layout='constrained')
+  barchar = ax1.barh(top5.astype(str), values, align='center', height=0.5,color='#B0C6CE')
+  ax1.invert_yaxis()
+  barchar[0].set_color('#15616D')
+  plt.show()
+  return anvil.mpl_util.plot_image(), pred2[0]
+    
 @anvil.server.callable
 def predict_ViT(file):
   with anvil.media.TempFile(file) as filename:
@@ -73,8 +78,16 @@ def predict_ViT(file):
   pred_probs2 = ViTmodel.predict([np.array([pixels_ravel]), pos_feed])
   ind = np.argpartition(pred_probs2[0], -5)[-5:]
   top5 = np.flip(ind[np.argsort(pred_probs2[0][ind])])
+  values = pred_probs2[0][top5]
   pred2 = np.argmax(pred_probs2, axis=1)
-  return top5,pred2[0]
+
+  fig, ax1 = plt.subplots(figsize=(9, 7), layout='constrained')
+  barchar = ax1.barh(top5.astype(str), values, align='center', height=0.5,color='#B0C6CE')
+  ax1.invert_yaxis()
+  barchar[0].set_color('#15616D')
+  plt.show()
+    
+  return anvil.mpl_util.plot_image(),pred2[0]
 
 
 anvil.server.connect("server_6YD55HP45RX7V6UHWRRAST3G-WOK7HWGMAN5O7RYP")
