@@ -8,7 +8,7 @@ import anvil.mpl_util
 anvil.server.connect("server_6YD55HP45RX7V6UHWRRAST3G-WOK7HWGMAN5O7RYP")
 
 CNNmodel = tf.keras.models.load_model('Models/CNNmodel_mnist')
-ViTmodel = tf.keras.models.load_model('Models/ViTmodel')
+ViTmodel = tf.keras.models.load_model('Models/ViT_mnist')
 
 
 @anvil.server.callable
